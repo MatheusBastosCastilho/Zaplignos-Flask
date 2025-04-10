@@ -56,7 +56,7 @@
 #     historico = carregar_historico("atendente")
 #     return render_template("atendente.html", historico=historico)
 
-from flask import Blueprint, render_template, request
+from flask import Blueprint, render_template, request, redirect, url_for
 from main import manda_mensagem, pegar_mensagens
 bp = Blueprint("chat", __name__)
 
@@ -71,6 +71,7 @@ def home():
 def usuario():  
     if request.method == "POST":
         manda_mensagem(request.form["mensagem"], str(nick))
+        return redirect(url_for("chat.usuario"))
     elif request.method == "GET":
         mensagens = pegar_mensagens()
         return render_template("usuario.html", historico=mensagens)
