@@ -5,12 +5,13 @@
 </head>
 <body>
     <h1>Bem-vindo ao ZapLignos</h1>
-    <form action="/usuario" method="get">
-        <input type="submit" value="Abrir como Usuário">
+    <form method="POST">
+        <label for="user">Nome Usuario:</label>
+        <input type="text" name="user" id="user">
+        <input type="submit" name="Confirmar" id="Confirmar">
     </form>
-    <br>
-    <form action="/atendente" method="get">
-        <input type="submit" value="Abrir como Atendente">
+    <form action="/usuario" method="get">
+        <input type="submit" value="Abrir Mensagens">
     </form>
 </body>
 </html>

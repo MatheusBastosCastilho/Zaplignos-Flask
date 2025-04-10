@@ -1,34 +1,34 @@
 from database import conecta, encerra_conexao
 
-def main():
-    connection = conecta()
-    cursor = connection.cursor()
+def manda_mensagem(mensagem, usuario):
+    try:
+        conn = conecta()
+        cursor = conn.cursor()
+        comando = "INSERT INTO mensagens (mensagem, usuario) VALUES (%s,%s);"
+        valores = (mensagem, usuario)
+        cursor.execute(comando, valores)
+        conn.commit()
+        print("Mensagem enviada com sucesso!")
+    except Exception as e:
+        print(f"Erro ao mandar mensagem: {e}")
+    finally:
+        encerra_conexao(conn)
 
-    def insere_acoes(ticker, nome_empresa, setor, preco, data_cotacao):
-        cmd_insert = "INSERT INTO acoes_b3 (ticker, nome_empresa, setor, preco, data_cotacao) VALUES (%s,%s,%s,%s,%s);"
-        values = (ticker, nome_empresa, setor, preco, data_cotacao)
-        cursor.execute(cmd_insert, values)
-        connection.commit()
-        print("Dados inseridos com sucesso!")
-
-    def seleciona():
-        cmd_select = "SELECT ticker, nome_empresa, setor, preco, data_cotacao FROM acoes_b3;"
-        cursor.execute(cmd_select)
+def pegar_mensagens():
+    try:
+        conn = conecta()
+        cursor = conn.cursor()
+        comando = "SELECT usuario, mensagem from mensagens order by id_mensagem limit 20;"
+        cursor.execute(comando)
         acoes = cursor.fetchall()
-        for acao in acoes:
-            print(acao)
-        return acoes
 
-    def atualiza(novo_preco, ticker):
-        cmd_update = "UPDATE acoes_b3 SET preco=%s WHERE ticker=%s"
-        cursor.execute(cmd_update, (novo_preco, ticker))
-        connection.commit()
-        print("Registro atualizado com sucesso!")
-
-    def deleta(ticker):
-        cmd_delete = "DELETE FROM acoes_b3 WHERE ticker=%s"
-        cursor.execute(cmd_delete, (ticker,))
-        connection.commit()
-        print("Registro deletado com sucesso!")
-
-    encerra_conexao(connection)
+        
+        listamensagens = []
+        for i in range(len(acoes)):
+            listamensagens.append(f'<font color="black">{acoes[len(acoes) - i - 1][0]}: {acoes[len(acoes) - i - 1][1]}</font>')
+        return listamensagens
+    except Exception as e:
+        print(f"Erro ao pegar mensagens: {e}")
+        return []
+    finally:
+        encerra_conexao(conn)
