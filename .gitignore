@@ -1,1 +1,63 @@
+# Env
 .env
+
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.pyc
+*.pdb
+
+# Virtual Environment
+venv/
+.env/
+.venv/
+ENV/
+env.bak/
+*.env
+
+# Flask
+instance/
+*.db
+*.sqlite3
+
+# Pytest / Coverage / Testing
+htmlcov/
+.coverage
+.tox/
+.nox/
+.cache/
+.pytest_cache/
+nosetests.xml
+coverage.xml
+*.cover
+*.log
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# VSCode
+.vscode/
+
+# MacOS
+.DS_Store
+
+# Logs
+*.log
+
+# Migrations (caso use Flask-Migrate)
+migrations/
+
+# Byte-compiled / optimized / DLL files
+*.so
+*.egg
+*.egg-info/
+dist/
+build/
+
+# mypy
+.mypy_cache/
+
+# pip-tools
+*.txt~
