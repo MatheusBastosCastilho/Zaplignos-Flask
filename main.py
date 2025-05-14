@@ -18,7 +18,7 @@ def pegar_mensagens():
     try:
         conn = conecta()
         cursor = conn.cursor()
-        comando = "SELECT usuario, mensagem from mensagens order by id_mensagem limit 20;"
+        comando = "SELECT usuario, mensagem from mensagens order by id_mensagem;"
         cursor.execute(comando)
         acoes = cursor.fetchall()
 

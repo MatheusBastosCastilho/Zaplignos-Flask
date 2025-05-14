@@ -65,6 +65,7 @@ def home():
     global nick
     if request.method == "POST":
         nick = request.form["user"]
+        print(nick)
     return render_template("index.html")
 
 @bp.route("/usuario", methods=["GET", "POST"])
